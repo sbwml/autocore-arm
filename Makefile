@@ -51,7 +51,6 @@ define Package/autocore/install/Default
 	$(CP) ./files/generic/luci-mod-status-autocore.json $(1)/usr/share/rpcd/acl.d/
 
 	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
-	$(INSTALL_DATA) ./files/generic/19_cpu.js $(1)/www/luci-static/resources/view/status/include/
 	$(INSTALL_DATA) ./files/generic/29_ethinfo.js $(1)/www/luci-static/resources/view/status/include/
 endef
 
