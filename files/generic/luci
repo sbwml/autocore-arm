@@ -209,6 +209,7 @@ local methods = {
 			rv.firewall      = fs.access("/sbin/fw3")
 			rv.opkg          = fs.access("/bin/opkg")
 			rv.offloading    = fs.access("/sys/module/xt_FLOWOFFLOAD/refcnt")
+			rv.fullcone      = fs.access("/sys/module/xt_FULLCONENAT/refcnt")
 			rv.br2684ctl     = fs.access("/usr/sbin/br2684ctl")
 			rv.swconfig      = fs.access("/sbin/swconfig")
 			rv.odhcpd        = fs.access("/usr/sbin/odhcpd")
