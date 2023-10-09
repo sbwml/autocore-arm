@@ -7,7 +7,7 @@ local jsonc = require "luci.jsonc"
 local eth_info = {}
 local ifname, stat
 for ifname, stat in pairs(util.ubus("network.device", "status")) do
-    if ifname:match("^(eth%d+)$") == ifname then
+    if ifname:match("^(eth%d+)$") == ifname or ifname:match("^(usb%d+)$") == ifname then
         local status, speed, duplex
 
         status = stat.carrier and "yes" or "no"
