@@ -8,7 +8,7 @@ local eth_info = {}
 local ifname, stat
 for ifname, stat in pairs(util.ubus("network.device", "status")) do
     if ifname:match("^(eth%d+)$") == ifname or ifname:match("^(usb%d+)$") or ifname:match("^(lan%d+)$") == ifname then
-        local status, speed, duplex
+        local status, speed, duplex, temperature
 
         status = stat.carrier and "yes" or "no"
 
@@ -30,11 +30,27 @@ for ifname, stat in pairs(util.ubus("network.device", "status")) do
             duplex = "Half"
         end
 
+        local temp_file = "/proc/net/r8125/" .. ifname .. "/test/temp"
+        local temp_file = io.open(temp_file, "r")
+        if temp_file then
+            local line = temp_file:read("*all")
+            local cel_temp = string.match(line, "Cel:(%d+)")
+            if cel_temp then
+                temperature = cel_temp .. "°C"
+            else
+                temperature = "-"
+            end
+            temp_file:close()
+        else
+            temperature = "-"
+        end
+
         eth_info[#eth_info + 1] = {
             name = ifname,
             status = status,
             speed = speed,
-            duplex = duplex
+            duplex = duplex,
+            temperature = temperature
         }
     end
 end

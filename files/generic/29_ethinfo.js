@@ -25,7 +25,9 @@ return L.Class.extend({
 				E('th', { 'class': 'th' }, _('Ethernet Name')),
 				E('th', { 'class': 'th' }, _('Link Status')),
 				E('th', { 'class': 'th' }, _('Speed')),
-				E('th', { 'class': 'th' }, _('Duplex'))
+				E('th', { 'class': 'th' }, _('Duplex')),
+				E('th', { 'class': 'th' }, _('Temperature'))
+
 			])
 		]);
 
@@ -49,7 +51,8 @@ return L.Class.extend({
 				info.name,
 				exp1,
 				info.speed,
-				exp2
+				exp2,
+				info.temperature
 			];
 		}));
 
