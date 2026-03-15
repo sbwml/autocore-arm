@@ -52,6 +52,9 @@ define Package/autocore/install/Default
 
 	$(INSTALL_DIR) $(1)/usr/share/rpcd/acl.d
 	$(CP) ./files/generic/luci-mod-status-autocore.json $(1)/usr/share/rpcd/acl.d/
+
+	$(INSTALL_DIR) $(1)/www/luci-static/resources/view/status/include
+	$(INSTALL_DATA) ./files/generic/35_network_speed.js $(1)/www/luci-static/resources/view/status/include/35_network_speed.js
 endef
 
 define Package/autocore-arm/install
