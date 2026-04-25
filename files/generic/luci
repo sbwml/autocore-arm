@@ -789,16 +789,16 @@ const methods = {
 					if (p) {
 						let res = p.read("all") || "";
 						p.close();
-						let m = match(res, /(?:Package id|Core)\s+\d+:\s+\+([0-9.]+)/);
+						let m = match(res, /(Package id|Core)\s+\d+:\s*[+-]?([0-9.]+)/);
 						if (m) {
-							cpu_temp = sprintf("%s°C", m[1]);
+							cpu_temp = sprintf("%s°C", m[2]);
 						} else {
 							let p2 = popen("sensors 'k10temp-*' 2>/dev/null");
 							if (p2) {
 								let res2 = p2.read("all") || "";
 								p2.close();
-								let m2 = match(res2, /(?:Tctl|Tdie):\s+\+([0-9.]+)/);
-								if (m2) cpu_temp = sprintf("%s°C", m2[1]);
+								let m2 = match(res2, /(Tctl|Tdie):\s+\+([0-9.]+)/);
+								if (m2) cpu_temp = sprintf("%s°C", m2[2]);
 							}
 						}
 					}
